@@ -14,11 +14,11 @@ int main(void) {
   pid = fork();
   
 
-  if (pid != 0){ /* Processus père */
+  if (pid){ /* Processus père */
     close(descr1[1]);
     close(descr2[0]);
     int i[5] = {1,2,3,4,5};
-    int a = write(descr2[1], &i, 5);  
+    int a = write(descr2[1], &i, sizeof(int)*5);  
     //printf ("%d \n", a);
     read(descr[0], &buffer, 5);
     for(int j =0; j++;j<5){
@@ -31,7 +31,7 @@ int main(void) {
   }
 
 
-  if (pid == 0){ /* Processus fils */
+  else{ /* Processus fils */
     close(descr1[0]);
     close(descr2[1]);
     
